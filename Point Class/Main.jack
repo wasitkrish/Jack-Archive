@@ -1,0 +1,13 @@
+class Main{
+    function void main(){
+        var Point p1,p2,p3;
+        let p1 = Point.new(1,2);
+        let p2 = Point.new(3,4);
+        let p3 = p1.plus(p2);
+        do p3.print();
+        do Output.printInt(p1.distance(p2));
+        do Output.printInt(Point.getPointcount());
+        do p1.dispose();
+        return;
+    }
+}
