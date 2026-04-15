@@ -1,0 +1,13 @@
+class Main{
+    function void main(){
+        var List x;
+        let x = List.new(5,null);
+        let x = List.new(3,x);
+        let x = List.new(4,x);
+        let x = List.new(2,x);
+        let x = List.new(1,x);
+        do x.print();
+        do x.dispose();
+        return;
+    }
+}
