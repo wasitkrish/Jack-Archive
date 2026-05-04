@@ -1,0 +1,13 @@
+class Main{
+    function void main(){
+        var Point px,py,pz;
+        var int distance;
+        let px = Point.new(2,3);
+        let py = Point.new(3,4);
+        let pz = px.plus(py);
+        do pz.display();
+        let distance = px.distance(py);
+        do Output.printInt(distance);
+        return;
+    }
+}

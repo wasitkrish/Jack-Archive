@@ -1,0 +1,13 @@
+class Reverse{
+    function int reverse(int x){
+        var int reversed,n;
+        let reversed=0;
+        while(x>0){
+            let n=x-((x/10)*10);
+            let reversed=reversed*10+n;
+            let x=x/10;
+        }
+        return(reversed);
+
+    }
+}

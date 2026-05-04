@@ -1,0 +1,36 @@
+class Main {
+    function void main() {
+        var String name, gender, tierStr;
+        var int age, tier;
+
+        let name = "Krish Singh";
+        let age = 20;
+
+        do Output.printString("Enter your gender: ");
+        let gender = Keyboard.readLine();
+        do Output.printChar(10);
+
+        do Output.printString("Enter your rating tier: ");
+        let tierStr = Keyboard.readLine();      // ← changed
+        let tier = String.intValue(tierStr);    // ← convert
+        do Output.printChar(10);
+
+        do Output.printString("Name: ");
+        do Output.printString(name);
+        do Output.printChar(10);
+
+        do Output.printString("Age: ");
+        do Output.printInt(age);
+        do Output.printChar(10);
+
+        do Output.printString("Tier: ");
+        do Output.printInt(tier);
+        do Output.printChar(10);
+
+        do Output.printString("Gender: ");
+        do Output.printString(gender);
+        do Output.printChar(10);
+
+        return;
+    }
+}

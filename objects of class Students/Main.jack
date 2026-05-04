@@ -1,0 +1,14 @@
+class Main{
+    function void main(){
+        var Student s1;
+        var Student s2;
+        let s1 = Student.new("Krish",20,"Bangalore, India");
+        let s2 = Student.new("Rijan",22,"Tiblis, Georgia");
+        do s1.display();
+        do Output.println();
+        do s2.display();
+        do s1.dispose();
+        do s2.dispose();
+        return;
+    }
+}

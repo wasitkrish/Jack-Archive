@@ -1,0 +1,75 @@
+// FigureGame.jack
+// Manages the game loop.
+// Arrow keys move the figure continuously while held.
+// 'Q' (key code 81) erases the figure and exits.
+
+class FigureGame {
+    field Figure figure;   // the sprite being controlled
+    field boolean exit;    // set to true when Q is pressed
+
+    // ------------------------------------------------------------------
+    // Constructor – spawns the figure at the screen centre.
+    //
+    // Screen is 256 rows x 512 pixels = 256 rows x 32 words.
+    // Figure is 32 rows tall and 2 words wide.
+    // Centre row  = (256 - 32) / 2 = 112
+    // Centre col  = (32  -  2) / 2 = 15
+    // ------------------------------------------------------------------
+    constructor FigureGame new() {
+        let figure = Figure.new(112, 15);
+        let exit = false;
+        return this;
+    }
+
+    // ------------------------------------------------------------------
+    // dispose – frees all heap objects owned by this game.
+    // ------------------------------------------------------------------
+    method void dispose() {
+        do figure.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    // ------------------------------------------------------------------
+    // run – main game loop, mirrors the Square game pattern:
+    //
+    //   while not exit:
+    //       read key
+    //       act on key
+    //       wait a short time   ← keeps movement smooth and bounded
+    //
+    // Key codes (from the Jack OS API):
+    //   130 = left arrow
+    //   131 = up arrow
+    //   132 = right arrow
+    //   133 = down arrow
+    //    81 = 'Q'
+    //
+    // Because Keyboard.keyPressed() returns the key that is CURRENTLY
+    // held down (or 0 if none), holding an arrow key will trigger the
+    // move every iteration of the loop → smooth continuous movement.
+    // ------------------------------------------------------------------
+    method void run() {
+        var char key;
+
+        while (~exit) {
+            let key = Keyboard.keyPressed();
+
+            if (key = 131) { do figure.moveUp();    }  // up arrow
+            if (key = 133) { do figure.moveDown();  }  // down arrow
+            if (key = 130) { do figure.moveLeft();  }  // left arrow
+            if (key = 132) { do figure.moveRight(); }  // right arrow
+
+            if (key = 81)  {                           // 'Q' – quit
+                do figure.erase();
+                let exit = true;
+            }
+
+            // ~12 ms per frame → ~83 fps cap; keeps the figure moving
+            // at a human-perceptible but controllable speed.
+            do Sys.wait(12);
+        }
+
+        return;
+    }
+}

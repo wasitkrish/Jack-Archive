@@ -1,0 +1,83 @@
+function Main.main 2
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+not
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 1
+push local 1
+push constant 130
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Screen.clearScreen 0
+pop temp 0
+push constant 0
+push constant 0
+push constant 511
+push constant 255
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push local 1
+push constant 131
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call Screen.clearScreen 0
+pop temp 0
+push constant 0
+push constant 0
+push constant 255
+push constant 127
+call Screen.drawRectangle 4
+pop temp 0
+push constant 256
+push constant 128
+push constant 511
+push constant 255
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE1
+push local 1
+push constant 132
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+call Screen.clearScreen 0
+pop temp 0
+push constant 255
+push constant 0
+push constant 511
+push constant 127
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+push constant 127
+push constant 255
+push constant 255
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE2
+push local 1
+push constant 133
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+call Screen.clearScreen 0
+pop temp 0
+push constant 0
+not
+pop local 0
+label IF_FALSE3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

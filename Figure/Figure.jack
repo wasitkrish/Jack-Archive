@@ -1,0 +1,238 @@
+// Figure.jack
+// Represents the bitmap figure on screen.
+// The figure is 32 rows tall and 2 words (32 pixels) wide.
+// It is positioned using a (row, col) coordinate where:
+//   row  = screen row index (0..255), figure occupies rows row..row+31
+//   col  = word column index (0..31),  figure occupies cols col and col+1
+//
+// Screen memory starts at address 16384.
+// Each screen row is 32 words wide.
+// So the base word address = 16384 + (row * 32) + col.
+
+class Figure {
+    field int row;   // top-left row  (0 .. 224, since figure is 32 rows tall)
+    field int col;   // top-left word column (0 .. 30, since figure is 2 words wide)
+
+    // ------------------------------------------------------------------
+    // Constructor – places the figure at (r, c) and draws it immediately.
+    // ------------------------------------------------------------------
+    constructor Figure new(int r, int c) {
+        let row = r;
+        let col = c;
+        do draw();
+        return this;
+    }
+
+    // ------------------------------------------------------------------
+    // Dispose – frees this object's memory.
+    // ------------------------------------------------------------------
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    // ------------------------------------------------------------------
+    // draw – renders the figure at the current (row, col) position.
+    //        All Memory.poke values come directly from the bitmap editor.
+    // ------------------------------------------------------------------
+    method void draw() {
+        var int m;                          // base word address
+        let m = 16384 + (row * 32) + col;
+
+        // ---- column 0 (word at offset 0 within each row) ----
+        do Memory.poke(m,       60);
+        do Memory.poke(m + 32,   2);
+        do Memory.poke(m + 64,  18);
+        do Memory.poke(m + 96,  10);
+        do Memory.poke(m + 128,  6);
+        do Memory.poke(m + 160,  2);
+        do Memory.poke(m + 192,  1);
+        do Memory.poke(m + 224,  3073);
+        do Memory.poke(m + 256,  4609);
+        do Memory.poke(m + 288,  4626);
+        do Memory.poke(m + 320,  8454);
+        do Memory.poke(m + 352, -16134);
+        do Memory.poke(m + 384,  18);
+        do Memory.poke(m + 416,  20);
+        do Memory.poke(m + 448,  24);
+        do Memory.poke(m + 480,  16);
+        do Memory.poke(m + 512,  16);
+        do Memory.poke(m + 544,  1048);
+        do Memory.poke(m + 576,  4);
+        do Memory.poke(m + 608,  2);
+        do Memory.poke(m + 640,  8322);
+        do Memory.poke(m + 672,  5377);
+        do Memory.poke(m + 704,  5377);
+        do Memory.poke(m + 736,  3585);
+        do Memory.poke(m + 768,  4353);
+        do Memory.poke(m + 800,  2561);
+        do Memory.poke(m + 832,  3074);
+        do Memory.poke(m + 864,  2050);
+        do Memory.poke(m + 896,  2054);
+        do Memory.poke(m + 928,  4100);
+        do Memory.poke(m + 960,  4100);
+        do Memory.poke(m + 992,  8200);
+
+        // ---- column 1 (word immediately to the right, offset +1) ----
+        do Memory.poke(m + 1,    15);
+        do Memory.poke(m + 33,   16);
+        do Memory.poke(m + 65,   18);
+        do Memory.poke(m + 97,   20);
+        do Memory.poke(m + 129,  24);
+        do Memory.poke(m + 161,  16);
+        do Memory.poke(m + 193,  32);
+        do Memory.poke(m + 225,  32);
+        do Memory.poke(m + 257,  32);
+        do Memory.poke(m + 289,  34);
+        do Memory.poke(m + 321,  56);
+        do Memory.poke(m + 353,  47);
+        do Memory.poke(m + 385,  50);
+        do Memory.poke(m + 417,  10);
+        do Memory.poke(m + 449,   6);
+        do Memory.poke(m + 481,   2);
+        do Memory.poke(m + 513,   2);
+        do Memory.poke(m + 545,   6);
+        do Memory.poke(m + 577,   8);
+        do Memory.poke(m + 609,  16);
+        do Memory.poke(m + 641,  16);
+        do Memory.poke(m + 673,  32);
+        do Memory.poke(m + 705,  32);
+        do Memory.poke(m + 737,  32);
+        do Memory.poke(m + 769,  32);
+        do Memory.poke(m + 801,  16);
+        do Memory.poke(m + 833,  16);
+        do Memory.poke(m + 865,  16);
+        do Memory.poke(m + 897,   8);
+        do Memory.poke(m + 929,   8);
+        do Memory.poke(m + 961,   8);
+        do Memory.poke(m + 993,   4);
+
+        return;
+    }
+
+    // ------------------------------------------------------------------
+    // erase – overwrites every pixel of the figure with 0 (white).
+    //         Must cover exactly the same addresses as draw().
+    // ------------------------------------------------------------------
+    method void erase() {
+        var int m;
+        let m = 16384 + (row * 32) + col;
+
+        // ---- column 0 ----
+        do Memory.poke(m,       0);
+        do Memory.poke(m + 32,  0);
+        do Memory.poke(m + 64,  0);
+        do Memory.poke(m + 96,  0);
+        do Memory.poke(m + 128, 0);
+        do Memory.poke(m + 160, 0);
+        do Memory.poke(m + 192, 0);
+        do Memory.poke(m + 224, 0);
+        do Memory.poke(m + 256, 0);
+        do Memory.poke(m + 288, 0);
+        do Memory.poke(m + 320, 0);
+        do Memory.poke(m + 352, 0);
+        do Memory.poke(m + 384, 0);
+        do Memory.poke(m + 416, 0);
+        do Memory.poke(m + 448, 0);
+        do Memory.poke(m + 480, 0);
+        do Memory.poke(m + 512, 0);
+        do Memory.poke(m + 544, 0);
+        do Memory.poke(m + 576, 0);
+        do Memory.poke(m + 608, 0);
+        do Memory.poke(m + 640, 0);
+        do Memory.poke(m + 672, 0);
+        do Memory.poke(m + 704, 0);
+        do Memory.poke(m + 736, 0);
+        do Memory.poke(m + 768, 0);
+        do Memory.poke(m + 800, 0);
+        do Memory.poke(m + 832, 0);
+        do Memory.poke(m + 864, 0);
+        do Memory.poke(m + 896, 0);
+        do Memory.poke(m + 928, 0);
+        do Memory.poke(m + 960, 0);
+        do Memory.poke(m + 992, 0);
+
+        // ---- column 1 ----
+        do Memory.poke(m + 1,   0);
+        do Memory.poke(m + 33,  0);
+        do Memory.poke(m + 65,  0);
+        do Memory.poke(m + 97,  0);
+        do Memory.poke(m + 129, 0);
+        do Memory.poke(m + 161, 0);
+        do Memory.poke(m + 193, 0);
+        do Memory.poke(m + 225, 0);
+        do Memory.poke(m + 257, 0);
+        do Memory.poke(m + 289, 0);
+        do Memory.poke(m + 321, 0);
+        do Memory.poke(m + 353, 0);
+        do Memory.poke(m + 385, 0);
+        do Memory.poke(m + 417, 0);
+        do Memory.poke(m + 449, 0);
+        do Memory.poke(m + 481, 0);
+        do Memory.poke(m + 513, 0);
+        do Memory.poke(m + 545, 0);
+        do Memory.poke(m + 577, 0);
+        do Memory.poke(m + 609, 0);
+        do Memory.poke(m + 641, 0);
+        do Memory.poke(m + 673, 0);
+        do Memory.poke(m + 705, 0);
+        do Memory.poke(m + 737, 0);
+        do Memory.poke(m + 769, 0);
+        do Memory.poke(m + 801, 0);
+        do Memory.poke(m + 833, 0);
+        do Memory.poke(m + 865, 0);
+        do Memory.poke(m + 897, 0);
+        do Memory.poke(m + 929, 0);
+        do Memory.poke(m + 961, 0);
+        do Memory.poke(m + 993, 0);
+
+        return;
+    }
+
+    // ------------------------------------------------------------------
+    // Movement methods – each erases, updates position, then redraws.
+    // Boundary rules:
+    //   row  in 0 .. 224   (256 screen rows  - 32 figure rows  = 224)
+    //   col  in 0 .. 30    (32  screen words  -  2 figure words =  30)
+    //
+    // Vertical step   = 2 rows  (2 pixels  per game tick)
+    // Horizontal step = 1 word  (16 pixels per game tick)
+    // Both directions feel equally responsive at Sys.wait(12).
+    // ------------------------------------------------------------------
+
+    method void moveUp() {
+        if (row > 1) {            // guard: stay >= row 0 after subtracting 2
+            do erase();
+            let row = row - 2;
+            do draw();
+        }
+        return;
+    }
+
+    method void moveDown() {
+        if (row < 223) {          // guard: row+2 <= 224
+            do erase();
+            let row = row + 2;
+            do draw();
+        }
+        return;
+    }
+
+    method void moveLeft() {
+        if (col > 0) {            // guard: col >= 0
+            do erase();
+            let col = col - 1;
+            do draw();
+        }
+        return;
+    }
+
+    method void moveRight() {
+        if (col < 30) {           // guard: col+1 <= 30
+            do erase();
+            let col = col + 1;
+            do draw();
+        }
+        return;
+    }
+}

@@ -1,0 +1,11 @@
+class Main{
+    function void main(){
+        var int x,y,sum;
+        let x = 20;
+        let y = 10;
+        let sum = Add.addition(x,y);
+        do Output.printString("Sum of x and y is : ");
+        do Output.printInt(sum);
+        return;
+    }
+}

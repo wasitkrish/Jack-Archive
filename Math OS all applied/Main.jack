@@ -1,0 +1,20 @@
+class Main{
+    function void main(){
+        var int x,y;
+        let x=5;
+        let y=10;
+        do Output.printInt(Math.abs(-244));
+        do Output.println();
+        do Output.printInt(Math.multiply(x,y));
+        do Output.println();
+        do Output.printInt(Math.divide(y,x));
+        do Output.println();
+        do Output.printInt(Math.sqrt(y));
+        do Output.println();
+        do Output.printInt(Math.max(x,y));
+        do Output.println();
+        do Output.printInt(Math.min(y,x));
+        do Output.println();
+        return;
+    }
+}

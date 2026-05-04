@@ -1,0 +1,24 @@
+class Main{
+    function void main(){
+        var int temp,i;
+        let i = 1;
+        do Output.printString("Numbers 1 to 20 are as follows: ");
+        while(i<21){
+            do Output.printInt(i);
+            do Output.printString(" ");
+            let i = i+1;
+        }
+        let i=1;
+        do Output.println();
+        do Output.printString("Only even numbers between 1 to 20 are as follows: ");
+        while(i<21){
+            if(i-((i/2)*2)=0){
+                do Output.printInt(i);
+                do Output.printString(" ");
+            }
+            let i=i+1;
+        }
+        return;
+
+    }
+}

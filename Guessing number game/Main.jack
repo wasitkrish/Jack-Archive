@@ -1,0 +1,22 @@
+class Main{
+    static int seed;
+    function int randgen(){
+        let seed = Math.abs((seed*31)+17);
+        return(seed - ((seed/10)*10))+1;
+    }
+    function void main(){
+        var int guess, attempt,secret;
+         let seed = 7;
+         let secret = Main.randgen();
+         let attempt=0;
+         while(~(guess=secret)){
+            let guess=Keyboard.readInt("Guess the number: ");
+            if(guess<secret){ do Output.printString("GO higher");}
+            if(guess>secret){ do Output.printString("GO Lower");}
+            let attempt=attempt+1;
+         }
+         do Output.printString("Congratulations, you guessed it on try no: ");
+         do Output.printInt(attempt);
+         return;
+    }
+}

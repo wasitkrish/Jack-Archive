@@ -1,0 +1,12 @@
+class Main{
+    function void main(){
+        var int num,ret;
+        let num = Keyboard.readInt("Enter amount to gamble: ");
+        let ret = Double.gamble(num);
+        do Output.printString("Your money got doubled ! ");
+        do Output.println();
+        do Output.printString("Your new balance is: ");
+        do Output.printInt(ret);
+        return;
+    }
+}

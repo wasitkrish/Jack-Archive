@@ -1,0 +1,7 @@
+class Double{
+    function int gamble(int num){
+        var int double;
+        let double=2*num;
+        return(double);
+    }
+}

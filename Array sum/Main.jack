@@ -1,0 +1,10 @@
+class Main{
+    function void main(){
+        var int num,sum;
+        let num=Keyboard.readInt("Enter number of elements: ");
+        let sum = Add.arraddition(num);
+        do Output.printString("Sum of Array elements is : ");
+        do Output.printInt(sum);
+        return;
+    }
+}

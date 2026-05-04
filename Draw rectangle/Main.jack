@@ -1,0 +1,29 @@
+class Main{
+    function void main(){
+        var boolean exit;
+        var Char key;
+        let exit=false;
+        while(~(exit)){
+            let key=Keyboard.keyPressed();
+            if(key=130){
+                do Screen.clearScreen();
+                do Screen.drawRectangle(0,0,511,255);
+            }
+            if(key=131){
+                do Screen.clearScreen();
+                do Screen.drawRectangle(0,0,255,127);
+                do Screen.drawRectangle(256,128,511,255);
+            }
+            if(key=132){
+                do Screen.clearScreen();
+                do Screen.drawRectangle(255,0,511,127);
+                do Screen.drawRectangle(0,127,255,255);
+            }
+            if(key=133){
+                do Screen.clearScreen();
+                let exit =true;
+            }
+        }
+        return;
+    }
+}

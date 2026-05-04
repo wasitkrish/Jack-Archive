@@ -1,0 +1,7 @@
+class Add{
+    function int addition(int xv,int yv){
+        var int sum;
+        let sum = xv + yv;
+        return(sum);
+    }
+}

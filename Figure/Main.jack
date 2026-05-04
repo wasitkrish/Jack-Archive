@@ -1,0 +1,12 @@
+// Main.jack
+// Entry point. Creates and runs the FigureGame.
+
+class Main {
+    function void main() {
+        var FigureGame game;
+        let game = FigureGame.new();
+        do game.run();
+        do game.dispose();
+        return;
+    }
+}

@@ -1,0 +1,8 @@
+class Main{
+    function void main(){
+        do Screen.drawPixel(254,126);
+        do Screen.drawPixel(255,127);
+        do Screen.drawPixel(256,128);
+        return;
+    }
+}

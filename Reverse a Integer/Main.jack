@@ -1,0 +1,10 @@
+class Main{
+    function void main(){
+        var int x,rev; 
+        let x=Keyboard.readInt("Enter an Integer to reverse: ");
+        let rev = Reverse.reverse(x);
+        do Output.printString("Reverse of integer is: ");
+        do Output.printInt(rev);
+        return;
+    }
+}

@@ -1,0 +1,26 @@
+class Student{
+    field String nm,lcl;
+    field int ag;
+    constructor Student new(String name, int age, String location){
+        let nm = name;
+        let ag = age;
+        let lcl = location;
+        return this;
+    }
+    method void display(){
+        do Output.printString("Name: ");
+        do Output.printString(nm);
+        do Output.println();
+        do Output.printString("Age: ");
+        do Output.printInt(ag);
+        do Output.println();
+        do Output.printString("Location: ");
+        do Output.printString(lcl);
+        do Output.println();
+        return;
+    }
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}

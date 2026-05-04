@@ -1,0 +1,18 @@
+class Main {
+    function void main() {
+        var int num;
+        var int check;
+
+        let num = Keyboard.readInt("Enter a number: ");
+        do Output.printString("You entered: ");
+        do Output.printInt(num);
+        let check = num-((num/2)*2);
+        if(check=0){
+            do Output.printString("Even");
+        }
+        else{
+            do Output.printString("Odd");
+        }
+        return;
+    }
+}

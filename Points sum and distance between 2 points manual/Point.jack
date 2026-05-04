@@ -1,0 +1,36 @@
+class Point{
+    field int x,y;
+    static int pointcount;
+    constructor Point new(int vx,int vy){
+        let x=vx;
+        let y=vy;
+        let pointcount=pointcount+1;
+        return this;
+    }
+    method int getx(){
+        return x;
+    }
+    method int gety(){
+        return y;
+    }
+    method int getpointc(){
+        return pointcount;
+    }
+    method void display(){
+        do Output.printString("X= ");
+        do Output.printInt(x);
+        do Output.println();
+        do Output.printString("Y= ");
+        do Output.printInt(y);
+        do Output.println();
+        return;
+    }
+    method Point plus(Point other){
+        return Point.new(x+other.getx(),y+other.gety());
+    }
+    method int distance(Point other){
+        var int distance;
+        let distance = Math.sqrt(((other.getx()-x)*(other.getx()-x))+((other.gety()-y)*(other.gety()-y)));
+        return distance;
+    }
+}

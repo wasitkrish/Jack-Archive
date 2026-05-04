@@ -1,0 +1,29 @@
+class List{
+    field int point;
+    field List next;
+    constructor List new(int x, List y){
+        let point=x;
+        let next=y;
+        return this;
+    }
+    method int getData(){
+        return point;
+    }
+    method List getNext(){
+        return next;
+    }
+    method void print(){
+        var List current;
+        let current=this;
+        while(~(current=null)){
+            do Output.printInt(current.getData());
+            do Output.printString(" ");
+            let current=current.getNext();
+        }
+        return;
+    }
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}
